@@ -1,0 +1,22 @@
+h2
+	| {{ dig.title }}
+h4
+	| {{ dig.body }}
+
+button type="button" ng-hide="shown" ng-click="show()"
+	| Show Comments
+button type="button" ng-show="shown" ng-click="hide()"
+	| Hide Comments
+
+div ng-show="shown" ng-include="'comments.html'"
+form ng-submit="comment()" ng-show="shown"
+  legend Add comment
+  label Body
+  textarea ng-model="newComment.body"
+  br
+  label Owner ID
+  input type="number" ng-model="newComment.owner_id"
+  br
+  input type="submit" value="Save"
+
+

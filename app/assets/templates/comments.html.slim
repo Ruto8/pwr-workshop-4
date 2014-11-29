@@ -1,0 +1,6 @@
+ul
+  li ng-repeat="comment in comments | orderBy:'rating':true"
+    h4
+      a ui-sref='comment({dig_id: dig.id, com_id: comment.id})'
+        | {{ comment.body }}
+      |  {{ comment.rating }}

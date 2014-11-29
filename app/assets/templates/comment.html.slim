@@ -1,0 +1,17 @@
+h3 ng-bind="comment.body"
+div ng-show="editing"
+    form ng-submit="update(comment)"
+      legend Edit comment
+      label Body
+      textarea ng-model="comment.body"
+      br
+      label Owner ID
+      input type="number" ng-model="comment.owner_id"
+      br
+      input type="submit" value="Save"
+      button type="button" ng-click="cancelEdit()" Cancel
+h6 ng-hide="editing"
+  | Owner_id: {{ comment.owner_id }}
+button type="button" ng-hide="editing" ng-click="edit()" Edit
+button type="button" ng-hide="editing" ng-click="back()"
+  | Back
