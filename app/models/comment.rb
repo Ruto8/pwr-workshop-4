@@ -5,4 +5,7 @@ class Comment < ActiveRecord::Base
   has_many :voters, through: :votes
 
   validates :body, :dig_id, :owner_id, presence: true
+  def as_json(opts={})
+    super.merge(rating: votes.sum(:amount))
+  end
 end

@@ -1,50 +1,50 @@
-div ng-controller="DigsCtrl"
-  div ng-repeat="dig in digs"
-    div ng-if="editedDigID != dig.id"
-      table
-        tr
-          td
-            button type="button" ng-click="vote(dig, 1)" +1
-          td
-            button type="button" ng-click="vote(dig, -1)" -1
-          td
-            | {{ dig.rating }}
+div ng-repeat="dig in digs | orderBy:'rating':true" style="border: 1px solid grey; margin: 5px"
+  div ng-if="editedDigID != dig.id"
+    table
+      tr
+        td
+          button type="button" ng-click="vote(dig, 1)" +1
+        td
+          button type="button" ng-click="vote(dig, -1)" -1
+        td
+          | {{ dig.rating }}
 
-      h4 ng-bind="dig.title"
-      span ng-bind="dig.body"
+    h4
+      a ui-sref="dig({id: dig.id})" ng-bind="dig.title"
+    br
+    span ng-bind="dig.body"
 
-      button type="button" ng-click="edit(dig)" Edit
-      button type="button" ng-click="destroy(dig)" &times;
+    button type="button" ng-click="edit(dig)" Edit
+    button type="button" ng-click="destroy(dig)" &times;
 
-    div ng-if="editedDigID == dig.id"
-      form ng-submit="update(dig)"
-        legend Edit dig
-
-        label Title
-        input type="text" ng-model="dig.title"
-        br
-        label Body
-        textarea ng-model="dig.body"
-        br
-        label Owner ID
-        input type="number" ng-model="dig.owner_id"
-        br
-        input type="submit" value="Save"
-        button type="button" ng-click="cancelEdit()" Cancel
+  div ng-if="editedDigID == dig.id"
+    form ng-submit="update(dig)"
+      legend Edit dig
+       label Title
+      input type="text" ng-model="dig.title"
+      br
+      label Body
+      textarea ng-model="dig.body"
+      br
+      label Owner ID
+      input type="number" ng-model="dig.owner_id"
+      br
+      input type="submit" value="Save"
+      button type="button" ng-click="cancelEdit()" Cancel
 
     hr
+br
+form ng-submit="create()"
+  legend New dig
 
-  form ng-submit="create()"
-    legend New dig
-
-    label Title
-    input type="text" ng-model="newDig.title"
-    br
-    label Body
-    textarea ng-model="newDig.body"
-    br
-    label Owner ID
-    input type="number" ng-model="newDig.owner_id"
-    br
-    input type="submit" value="Save"
+  label Title
+  input type="text" ng-model="newDig.title"
+  br
+  label Body
+  textarea ng-model="newDig.body"
+  br
+  label Owner ID
+  input type="number" ng-model="newDig.owner_id"
+  br
+  input type="submit" value="Save"
 

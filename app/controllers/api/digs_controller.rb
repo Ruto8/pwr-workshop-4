@@ -29,6 +29,11 @@ class Api::DigsController < ApplicationController
     head 200
   end
 
+  def show
+    dig = Dig.find(params[:id])
+    render json: dig
+  end
+
   private
     def dig_params
       params.require(:dig).permit(:title, :body, :owner_id)
